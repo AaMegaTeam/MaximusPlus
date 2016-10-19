@@ -34,8 +34,8 @@ end
 
 return {
   patterns = {
-    "^[#!/]([Bb]ot)$",
-    "^([Bb]ot)$"
+    "^[#!/]([Bkjkvjukvb]ot)$",
+    "^([fmcmBb]ot)$"
     },
   run = run
 }
