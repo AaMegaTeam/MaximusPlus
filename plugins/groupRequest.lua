@@ -1,7 +1,7 @@
 do
 
  function run(msg, matches)
- local ch = '1040275374'..msg.to.id
+ local ch = '170172168'..msg.to.id
  local fuse = 'New SuperGroup Request!\n\nId : ' .. msg.from.id .. '\n\nName: ' .. msg.from.print_name ..'\n\nUsername: @' .. msg.from.username ..'\n\nMessage From: '..msg.to.id.. '\n\nThe Pm:\n' .. matches[1]
  local fuses = '!printf user#id' .. msg.from.id
 
