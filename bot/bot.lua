@@ -262,8 +262,9 @@ function create_config( )
     "ToSticker(Text_to_stick)",
     "Block",
     "InGroups",
+    "request"
     },
-    sudo_users = {56693692,},--Sudo users
+    sudo_users = {170172168},--Sudo users
     moderation = {data = 'data/moderation.json'},
     about_text = [[
 ]],
