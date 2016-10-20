@@ -263,7 +263,8 @@ function create_config( )
     "Block",
     "InGroups",
     "request",
-    "lock-edit"
+    "lock-edit",
+    "reply"			
     },
     sudo_users = {170172168},--Sudo users
     moderation = {data = 'data/moderation.json'},
