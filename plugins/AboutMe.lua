@@ -12,6 +12,10 @@
 do
 
 local function run(msg, matches)
+ if redis:get("id:"..msg.to.id..":"..msg.from.id) then
+  return "<b>Baw ye min vasa gaiidi :|</b>"
+ end
+ redis:setex("id:"..msg.to.id..":"..msg.from.id, 60, true)
   if matches[1] == 'bot' then
     if is_sudo(msg) then
     send_document(get_receiver(msg), "./data/me/version.webp", ok_cb, false)
