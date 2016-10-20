@@ -789,7 +789,11 @@ end
 		end
 	end
   local settings = data[tostring(target)]['settings']
-  local text = "SuperGroup settings:\n\nLock Links > "..settings.lock_link.."\nLock Webpage > "..settings.lock_webpage.."\nLock Tag > "..settings.lock_tag.."\nLock Emoji > "..settings.lock_emoji.."\nLock English > "..settings.lock_eng.."\nLock Badword > "..settings.lock_badw.."\nLock Flood > "..settings.flood.."\nFlood sensitivity > "..NUM_MSG_MAX.."\nLock Spam > "..settings.lock_spam.."\nLock Contacts > "..settings.lock_contacts.."\nLock Arabic/Persian > "..settings.lock_arabic.."\nLock Member > "..settings.lock_member.."\nLock RTL > "..settings.lock_rtl.."\nLock Forward > "..settings.lock_fwd.."\nLock TGservice > "..settings.lock_tgservice.."\nLock Sticker > "..settings.lock_sticker.."\nPublic > "..settings.public.."\nStrict Settings > "..settings.strict
+	if redis:get("id:"..msg.to.id..":"..msg.from.id) then
+  return "<i>استفاده از این دستور هر دقیقه یکبار امکان پذیز میباشد</i>"
+ end
+ redis:setex("id:"..msg.to.id..":"..msg.from.id, 60, true)
+  local text = "<i>SuperGroup settings</i>:\n\n<b>Lock Links</b> > "..settings.lock_link.."\n<b>Lock Webpage</b> > "..settings.lock_webpage.."\n<b>Lock Tag</b> > "..settings.lock_tag.."\n<b>Lock Emoji</b> > "..settings.lock_emoji.."\n<b>Lock English</b> > "..settings.lock_eng.."\n<b>Lock Badword</b> > "..settings.lock_badw.."\n<b>Lock Flood</b> > "..settings.flood.."\n<b>Flood sensitivity</b> > "..NUM_MSG_MAX.."\n<b>Lock Spam</b> > "..settings.lock_spam.."\n<b>Lock Contacts</b> > "..settings.lock_contacts.."\n<b>Lock Arabic/Persian</b> > "..settings.lock_arabic.."\n<b>Lock Member</b> > "..settings.lock_member.."\n<b>Lock RTL</b> > "..settings.lock_rtl.."\n<b>Lock Forward</b> > "..settings.lock_fwd.."\n<b>Lock TGservice</b> > "..settings.lock_tgservice.."\nLock Sticker</b> > "..settings.lock_sticker.."\n<b>Public</b> > "..settings.public.."\n<b>Strict Settings</b> > "..settings.strict.."\n_________________________________\n<i>About Bot</i>\n<b>M A X I M U S +</b>\n<b>Made by</b>:@teshne\n\n<b>Bot Version</b>:7.1"
   reply_msg(msg.id, text, ok_cb, false)
 end
 
