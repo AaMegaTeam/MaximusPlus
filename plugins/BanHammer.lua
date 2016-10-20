@@ -133,10 +133,10 @@ local function kick_ban_res(extra, success, result)
         local hash =  'banned:'..chat_id
         redis:srem(hash, member_id)
         return 'Done\n User Unbanned'
-      elseif get_cmd == 'gban' then
+      elseif get_cmd == 'banall' then
         send_large_msg(receiver, '><i>این بی ناموس</i> ['..user_id..' ] <i>از همه یه گروه های ربات به دلیل مادر جندگی بن شد!</i> (Globally banned)')
 		banall_user(member_id)
-      elseif get_cmd == 'ugban' then
+      elseif get_cmd == 'unbanall' then
         send_large_msg(receiver, '><i>این بی ناموس</i> ['..user_id..' ] <i>از همه ی گروه های ربات آن بن شد</i>! (Unglobally banned)')
 	    unbanall_user(member_id)
     end
@@ -285,7 +285,7 @@ end
 		return
 	end
 
-  if matches[1]:lower() == 'gban' and is_admin1(msg) then -- Global ban
+  if matches[1]:lower() == 'banall' and is_admin1(msg) then -- Global ban
     if type(msg.reply_id) ~="nil" and is_admin1(msg) then
       banall = get_message(msg.reply_id,banall_by_reply, false)
     end
@@ -309,7 +309,7 @@ end
 		resolve_username(username, kick_ban_res, cbres_extra)
       end
   end
-  if matches[1]:lower() == 'ugban' then -- Global unban
+  if matches[1]:lower() == 'unbanall' then -- Global unban
     local user_id = matches[2]
     local chat_id = msg.to.id
       if string.match(matches[2], '^%d+$') then
@@ -336,8 +336,8 @@ end
 
 return {
   patterns = {
-    "^[#!/]([Gg]ban) (.*)$",
-    "^[#!/]([Gg]ban)$",
+    "^[#!/]([Bb]anall) (.*)$",
+    "^[#!/]([Bb]anall)$",
     "^[#!/]([Bb]anlist) (.*)$",
     "^[#!/]([Bb]anlist)$",
     "^[#!/]([Gg]banlist)$",
@@ -346,8 +346,8 @@ return {
 	"^[#!/]([Bb]an)$",
     "^[#!/]([Bb]an) (.*)$",
     "^[#!/]([Uu]nban) (.*)$",
-    "^[#!/]([Uu]gban) (.*)$",
-    "^[#!/]([Uu]gban)$",
+    "^[#!/]([Uu]nbanall) (.*)$",
+    "^[#!/]([Uu]nbanall)$",
     "^[#!/]([Kk]ick) (.*)$",
     "^[#!/]([Uu]nban)$",
     "^[#!/]([Ii]d)$",
