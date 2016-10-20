@@ -13,13 +13,13 @@ do
 
 local function run(msg, matches)
  if redis:get("id:"..msg.to.id..":"..msg.from.id) then
-  return "<b>Baw ye min vasa gaiidi :|</b>"
+  return "Baw ye min vasa gaiidi :|"
  end
  redis:setex("id:"..msg.to.id..":"..msg.from.id, 60, true)
   if matches[1] == 'bot' then
     if is_sudo(msg) then
     send_document(get_receiver(msg), "./data/me/version.webp", ok_cb, false)
-      return "<b>M A X I M U S +</b>\n---------------------------------------------\n|<i>An Advanced Bot Based On LUA</i>|\n\n> <b>Developer</b> : [@teshne | @aminpmresan_bot]\n---------------------------------------------\n> <b>Channel</b> : @pedaret\n\n<b>Thanks to:</b><i>B L A C K +</i>"
+      return "M A X I M U S +\n---------------------------------------------\n|An Advanced Bot Based On LUA|\n\n> Developer : [@teshne | @aminpmresan_bot]\n---------------------------------------------\n> Channel : @pedaret\n\nThanks to:B L A C K +"
     elseif is_admin1(msg) then
     send_document(get_receiver(msg), "./data/me/admin.webp", ok_cb, false)
       return "You're Admin"
