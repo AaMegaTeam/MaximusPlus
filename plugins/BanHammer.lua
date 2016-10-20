@@ -133,10 +133,10 @@ local function kick_ban_res(extra, success, result)
         local hash =  'banned:'..chat_id
         redis:srem(hash, member_id)
         return 'Done\n User Unbanned'
-      elseif get_cmd == 'banall' then
+      elseif get_cmd == 'gban' then
         send_large_msg(receiver, '><i>این بی ناموس</i> ['..user_id..' ] <i>از همه یه گروه های ربات به دلیل مادر جندگی بن شد!</i> (Globally banned)')
 		banall_user(member_id)
-      elseif get_cmd == 'unbanall' then
+      elseif get_cmd == 'ugban' then
         send_large_msg(receiver, '><i>این بی ناموس</i> ['..user_id..' ] <i>از همه ی گروه های ربات آن بن شد</i>! (Unglobally banned)')
 	    unbanall_user(member_id)
     end
