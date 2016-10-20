@@ -1,11 +1,12 @@
 do
+   
 local function aminpt(msg, matches)
 if is_sudo(msg) then
 return [[
 baladi ke baba :|
 ]]
-end
-if is_momod(msg) then
+   end
+   if is_momod(msg) then
 return [[
 !id
 دریافت مشخصات گروه
@@ -28,10 +29,10 @@ return [[
 -------------------------------------------------------------------------------------------
 Good Luck
 ]]
-end
-end
+  end
+  end
 return{
-   patterns + {
+   patterns = {
    "^[!#/](help)$",
    },
    run = aminpt,
