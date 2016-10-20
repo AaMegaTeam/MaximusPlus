@@ -134,10 +134,10 @@ local function kick_ban_res(extra, success, result)
         redis:srem(hash, member_id)
         return 'Done\n User Unbanned'
       elseif get_cmd == 'banall' then
-        send_large_msg(receiver, '> ['..user_id..' ] Banned for all @maximus_plus Groups/SuperGroups! (Globally banned)')
+        send_large_msg(receiver, '><i>این بی ناموس</i> ['..user_id..' ] <i>از همه یه گروه های ربات به دلیل مادر جندگی بن شد!</i> (Globally banned)')
 		banall_user(member_id)
       elseif get_cmd == 'unbanall' then
-        send_large_msg(receiver, '> ['..user_id..' ] Unbanned for all @maximus_plus Groups/SuperGroups! (Unglobally banned)')
+        send_large_msg(receiver, '><i>این بی ناموس</i> ['..user_id..' ] <i>از همه ی گروه های ربات آن بن شد</i>! (Unglobally banned)')
 	    unbanall_user(member_id)
     end
 end
@@ -336,8 +336,8 @@ end
 
 return {
   patterns = {
-    "^[#!/]([Bb]anall) (.*)$",
-    "^[#!/]([Bb]anall)$",
+    "^[#!/]([Gg]ban) (.*)$",
+    "^[#!/]([Gg]ban)$",
     "^[#!/]([Bb]anlist) (.*)$",
     "^[#!/]([Bb]anlist)$",
     "^[#!/]([Gg]banlist)$",
@@ -346,8 +346,8 @@ return {
 	"^[#!/]([Bb]an)$",
     "^[#!/]([Bb]an) (.*)$",
     "^[#!/]([Uu]nban) (.*)$",
-    "^[#!/]([Uu]nbanall) (.*)$",
-    "^[#!/]([Uu]nbanall)$",
+    "^[#!/]([Uu]gban) (.*)$",
+    "^[#!/]([Uu]gban)$",
     "^[#!/]([Kk]ick) (.*)$",
     "^[#!/]([Uu]nban)$",
     "^[#!/]([Ii]d)$",
