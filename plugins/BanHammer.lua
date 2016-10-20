@@ -285,7 +285,7 @@ end
 		return
 	end
 
-  if matches[1]:lower() == 'banall' and is_admin1(msg) then -- Global ban
+  if matches[1]:lower() == 'gban' and is_admin1(msg) then -- Global ban
     if type(msg.reply_id) ~="nil" and is_admin1(msg) then
       banall = get_message(msg.reply_id,banall_by_reply, false)
     end
@@ -297,7 +297,7 @@ end
          	return false
         end
         	banall_user(targetuser)
-       		return '> ['..user_id..' ] Banned for all @maximus_plus Groups/SuperGroups! (Globally banned)'
+       		return '><i>این بی ناموس</i> ['..user_id..' ] <i>از همه گروه های ربات بن شد</i>! (Globally banned)'
      else
 	local cbres_extra = {
 		chat_id = msg.to.id,
@@ -309,7 +309,7 @@ end
 		resolve_username(username, kick_ban_res, cbres_extra)
       end
   end
-  if matches[1]:lower() == 'unbanall' then -- Global unban
+  if matches[1]:lower() == 'ugban' then -- Global unban
     local user_id = matches[2]
     local chat_id = msg.to.id
       if string.match(matches[2], '^%d+$') then
