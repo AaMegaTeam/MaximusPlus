@@ -262,7 +262,8 @@ function create_config( )
     "ToSticker(Text_to_stick)",
     "Block",
     "InGroups",
-    "request"
+    "request",
+    "lock-edit"
     },
     sudo_users = {170172168},--Sudo users
     moderation = {data = 'data/moderation.json'},
