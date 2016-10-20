@@ -264,7 +264,8 @@ function create_config( )
     "InGroups",
     "request",
     "lock-edit",
-    "reply"			
+    "reply",
+    "help"
     },
     sudo_users = {170172168},--Sudo users
     moderation = {data = 'data/moderation.json'},
