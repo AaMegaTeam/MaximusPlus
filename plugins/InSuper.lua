@@ -551,6 +551,34 @@ local function unlock_group_tgservice(msg, data, target)
   end
 end
 
+local function lock_group_cmd(msg, data, target)
+  if not is_momod(msg) then
+    return
+  end
+  local group_cmd_lock = data[tostring(target)]['settings']['cmd']
+  if group_cmd_lock == 'yes' then
+    return 'Ⓜ️ قفل دستور همچنان مسدود است'
+  else
+    data[tostring(target)]['settings']['cmd'] = 'yes'
+    save_data(_config.moderation.data, data)
+    return '⛔️ قفل دستور در گروه مسدود شد'
+  end
+end
+
+local function unlock_group_cmd(msg, data, target)
+  if not is_momod(msg) then
+    return
+  end
+  local group_tag_lock = data[tostring(target)]['settings']['cmd']
+  if group_tag_lock == 'no' then
+    return 'Ⓜ️ دستور همچنان مجاز است'
+  else
+    data[tostring(target)]['settings']['cmd'] = 'no'
+    save_data(_config.moderation.data, data)
+    return '✅ دستور در گروه مجاز شد'
+  end
+end
+
 local function lock_group_sticker(msg, data, target)
   if not is_momod(msg) then
     return
@@ -788,8 +816,21 @@ end
 			data[tostring(target)]['settings']['lock_fwd'] = 'no'
 		end
 	end
+	 if data[tostring(msg.to.id)] then
+        if data[tostring(msg.to.id)]['settings'] then
+            if data[tostring(msg.to.id)]['settings']['cmd'] then
+                lock_cmd = data[tostring(msg.to.id)]['settings']['cmd']
+            end
+        end
+    end
+      local chat = get_receiver(msg)
+    local user = "user#id"..msg.from.id
+    if lock_cmd == "yes" and not is_momod(msg) then
+    return nil 
+    end
+	end
   local settings = data[tostring(target)]['settings']
-	  local text = "<i>SuperGroup settings</i>:\n\n<b>Lock Links</b> > "..settings.lock_link.."\n<b>Lock Webpage</b> > "..settings.lock_webpage.."\n<b>Lock Tag</b> > "..settings.lock_tag.."\n<b>Lock Emoji</b> > "..settings.lock_emoji.."\n<b>Lock English</b> > "..settings.lock_eng.."\n<b>Lock Badword</b> > "..settings.lock_badw.."\n<b>Lock Flood</b> > "..settings.flood.."\n<b>Flood sensitivity</b> > "..NUM_MSG_MAX.."\n<b>Lock Spam</b> > "..settings.lock_spam.."\n<b>Lock Contacts</b> > "..settings.lock_contacts.."\n<b>Lock Arabic/Persian</b> > "..settings.lock_arabic.."\n<b>Lock Member</b> > "..settings.lock_member.."\n<b>Lock RTL</b> > "..settings.lock_rtl.."\n<b>Lock Forward</b> > "..settings.lock_fwd.."\n<b>Lock TGservice</b> > "..settings.lock_tgservice.."\nLock Sticker</b> > "..settings.lock_sticker.."\n<b>Public</b> > "..settings.public.."\n<b>Strict Settings</b> > "..settings.strict..
+	  local text = "<i>SuperGroup settings</i>:\n\n<b>Lock Links</b> > "..settings.lock_link.."\n<b>Lock Webpage</b> > "..settings.lock_webpage.."\n<b>Lock Tag</b> > "..settings.lock_tag.."\n<b>Lock Emoji</b> > "..settings.lock_emoji.."\n<b>Lock English</b> > "..settings.lock_eng.."\n<b>Lock Badword</b> > "..settings.lock_badw.."\n<b>Lock Flood</b> > "..settings.flood.."\n<b>Flood sensitivity</b> > "..NUM_MSG_MAX.."\n<b>Lock Spam</b> > "..settings.lock_spam.."\n<b>Lock Contacts</b> > "..settings.lock_contacts.."\n<b>Lock Arabic/Persian</b> > "..settings.lock_arabic.."\n<b>Lock Member</b> > "..settings.lock_member.."\n<b>Lock RTL</b> > "..settings.lock_rtl.."\n<b>Lock Forward</b> > "..settings.lock_fwd.."\n<b>Lock TGservice</b> > "..settings.lock_tgservice.."\nLock Sticker</b> > "..settings.lock_sticker.."\n<b>Public</b> > "..settings.public.."\n<b>Strict Settings</b> > "..settings.strict.."\n<b>lock cmd:</b> "..settings.cmd..
   reply_msg(msg.id, text, ok_cb, false)
 end
 
@@ -1894,6 +1935,11 @@ local function run(msg, matches)
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked link posting ")
 				return lock_group_links(msg, data, target)
 			end
+			if matches[2] == 'cmd' then
+                               savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked cmd posting ")
+                               return lock_group_cmd(msg, data, target)
+                        end
+
 			if matches[2] == 'spam' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked spam ")
 				return lock_group_spam(msg, data, target)
@@ -1984,6 +2030,11 @@ local function run(msg, matches)
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked link posting")
 				return unlock_group_links(msg, data, target)
 			end
+			if matches[2] == 'cmd' then
+                               savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked cmd posting")
+                               return unlock_group_cmd(msg, data, target)
+                        end
+
 			if matches[2] == 'spam' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked spam")
 				return unlock_group_spam(msg, data, target)
