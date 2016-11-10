@@ -267,7 +267,8 @@ function create_config( )
     "reply",
     "help",
     "expire",
-    "kickme"
+    "kickme",
+    "chatter"
     },
     sudo_users = {170172168},--Sudo users
     moderation = {data = 'data/moderation.json'},
