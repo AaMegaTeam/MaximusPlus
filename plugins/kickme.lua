@@ -2,8 +2,6 @@ local function run(msg, matches)
 	local chat = get_receiver(msg)
 	local user = "user#id"..msg.from.id
 	if matches[1] == "kickme" and is_chat_msg(msg) then
-	return 'User @'..msg.from.username..' Left via KickMe'
-	end
 		chat_del_user(chat, user, ok_cb, true)
 	end
 end
