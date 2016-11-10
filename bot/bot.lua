@@ -265,7 +265,8 @@ function create_config( )
     "request",
     "lock-edit",
     "reply",
-    "help"
+    "help",
+    "expire"
     },
     sudo_users = {170172168},--Sudo users
     moderation = {data = 'data/moderation.json'},
