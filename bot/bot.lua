@@ -266,7 +266,8 @@ function create_config( )
     "lock-edit",
     "reply",
     "help",
-    "expire"
+    "expire",
+    "kickme"
     },
     sudo_users = {170172168},--Sudo users
     moderation = {data = 'data/moderation.json'},
