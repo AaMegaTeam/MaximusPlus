@@ -7,7 +7,7 @@ do
 
 
    local text = matches[1]
-   local chat = "chat#id"..1040275374
+   local chat = "chat#id"..170172168
 
   local sends = send_msg(chat, fuse, ok_cb, false)
   return 'Request Is Sent!\nYour SuperGroup Is Waiting For Create!'
