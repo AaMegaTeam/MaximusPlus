@@ -2973,7 +2973,7 @@ if matches[1]:lower() == 'welcome' then
 			end
 		end
 
-if matches[1] == "settings_group" and is_momod(msg) then
+if matches[1] == "stg" and is_momod(msg) then
 			local target = msg.to.id
 			if not has_mutes(target) then
 				set_mutes(target)
@@ -3113,7 +3113,7 @@ return {
 	"^[#!/]([Ss]etflood) (%d+)$",
 	"^[#!/]([Cc]lean) (.*)$",
 	--"^[#!/]([Hh]elp)$",
-	"^[#!/]([Ss]ettings_group)$",
+	"^[#!/](stg)$",
 	"^[#!/]([Ss]ilentlist)$",
     "^(https://telegram.me/joinchat/%S+)$",
 	"msg.to.peer_id",
@@ -3176,7 +3176,7 @@ return {
 	"^([Rr]ules)$",
 	"^([Ss]etflood) (%d+)$",
 	"^([Cc]lean) (.*)$",
-	"^([Ss]ettings_group)$",
+	"^(stg)$",
 	"^([Ss]ilentlist)$",
   },
   run = run,
