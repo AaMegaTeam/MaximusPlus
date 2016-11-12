@@ -1,4 +1,4 @@
-?--[[
+﻿--[[
 
      **************************
      *  BlackPlus Plugins...  *
@@ -56,7 +56,7 @@ local function check_member_super(cb_extra, success, result)
       end
       data[tostring(groups)][tostring(msg.to.id)] = msg.to.id
       save_data(_config.moderation.data, data)
-	  local text = '<i>SuperGroup has been added!</i>\n\n<b>Added by:</b>@'..msg.from.username..''
+	  local text = 'SuperGroup has been added!'
       return reply_msg(msg.id, text, ok_cb, false)
     end
   end
@@ -80,7 +80,7 @@ local function check_member_superrem(cb_extra, success, result)
       end
       data[tostring(groups)][tostring(msg.to.id)] = nil
       save_data(_config.moderation.data, data)
-	  local text = '<i>SuperGroup has been removed</i>\n\n<b>Removed by:</b>@'..msg.from.username..''
+	  local text = 'SuperGroup has been removed'
       return reply_msg(msg.id, text, ok_cb, false)
     end
   end
@@ -110,7 +110,7 @@ for k,v in pairsByKeys(result) do
 if not v.first_name then
 	name = " "
 else
-	vname = v.first_name:gsub("?", "")
+	vname = v.first_name:gsub("‮", "")
 	name = vname:gsub("_", " ")
 	end
 		text = text.."\n"..i.." - "..name.."["..v.peer_id.."]"
@@ -152,7 +152,7 @@ for k,v in pairsByKeys(result) do
 if not v.print_name then
 	name = " "
 else
-	vname = v.print_name:gsub("?", "")
+	vname = v.print_name:gsub("‮", "")
 	name = vname:gsub("_", " ")
 end
 	if v.username then
@@ -181,7 +181,7 @@ for k,v in pairsByKeys(result) do
 if not v.print_name then
 	name = " "
 else
-	vname = v.print_name:gsub("?", "")
+	vname = v.print_name:gsub("‮", "")
 	name = vname:gsub("_", " ")
 end
 	if v.username then
@@ -205,11 +205,11 @@ local function lock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'yes' then
-    return reply_msg(msg.id,"<i>Link posting is already locked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Link posting is #already locked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_link'] = 'yes'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b>Link posting has been locked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Link posting has been #locked", ok_cb, false)
   end
 end
 
@@ -219,11 +219,11 @@ local function unlock_group_links(msg, data, target)
   end
   local group_link_lock = data[tostring(target)]['settings']['lock_link']
   if group_link_lock == 'no' then
-    return reply_msg(msg.id,"<i>Link posting is #not locked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Link posting is #not locked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_link'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b>Link posting has been #unlocked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Link posting has been #unlocked", ok_cb, false)
   end
 end
 
@@ -236,11 +236,11 @@ local function lock_group_spam(msg, data, target)
   end
   local group_spam_lock = data[tostring(target)]['settings']['lock_spam']
   if group_spam_lock == 'yes' then
-    return reply_msg(msg.id,"<i> SuperGroup #spam is #already locked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> SuperGroup #spam is #already locked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_spam'] = 'yes'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> SuperGroup #spam has been #locked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> SuperGroup #spam has been #locked", ok_cb, false)
   end
 end
 
@@ -250,11 +250,11 @@ local function unlock_group_spam(msg, data, target)
   end
   local group_spam_lock = data[tostring(target)]['settings']['lock_spam']
   if group_spam_lock == 'no' then
-    return reply_msg(msg.id,"<i> SuperGroup #spam is #not locked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> SuperGroup #spam is #not locked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_spam'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> SuperGroup #spam has been #unlocked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> SuperGroup #spam has been #unlocked", ok_cb, false)
   end
 end
 
@@ -264,11 +264,11 @@ local function lock_group_flood(msg, data, target)
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
   if group_flood_lock == 'yes' then
-    return reply_msg(msg.id,"<i> #Spamming is #already locked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Spamming is #already locked", ok_cb, false)
   else
     data[tostring(target)]['settings']['flood'] = 'yes'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Spamming has been #locked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Spamming has been #locked", ok_cb, false)
   end
 end
 
@@ -278,11 +278,11 @@ local function unlock_group_flood(msg, data, target)
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
   if group_flood_lock == 'no' then
-    return reply_msg(msg.id,"<i> #Spamming is #not locked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Spamming is #not locked", ok_cb, false)
   else
     data[tostring(target)]['settings']['flood'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Spamming has been #unlocked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Spamming has been #unlocked", ok_cb, false)
   end
 end
 
@@ -292,11 +292,11 @@ local function lock_group_arabic(msg, data, target)
   end
   local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
   if group_arabic_lock == 'yes' then
-    return reply_msg(msg.id,"<i> #Arabic/Persian is #already locked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Arabic/Persian is #already locked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_arabic'] = 'yes'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Arabic/Persian has been #locked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Arabic/Persian has been #locked", ok_cb, false)
   end
 end
 
@@ -306,11 +306,11 @@ local function unlock_group_arabic(msg, data, target)
   end
   local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
   if group_arabic_lock == 'no' then
-    return reply_msg(msg.id,"<i> #Arabic/Persian is #already unlocked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Arabic/Persian is #already unlocked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_arabic'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Arabic/Persian has been #unlocked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Arabic/Persian has been #unlocked", ok_cb, false)
   end
 end
 -- Tag Fanction by MehdiHS!
@@ -320,11 +320,11 @@ local function lock_group_tag(msg, data, target)
   end
   local group_tag_lock = data[tostring(target)]['settings']['lock_tag']
   if group_tag_lock == 'yes' then
-    return reply_msg(msg.id,"<i> #Tag is #already locked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Tag is #already locked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_tag'] = 'yes'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Tag has been #locked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Tag has been #locked", ok_cb, false)
   end
 end
 
@@ -334,11 +334,11 @@ local function unlock_group_tag(msg, data, target)
   end
   local group_tag_lock = data[tostring(target)]['settings']['lock_tag']
   if group_tag_lock == 'no' then
-    return reply_msg(msg.id,"<i> #Tag is #already unlocked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Tag is #already unlocked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_tag'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> Tag has been #unlocked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> Tag has been #unlocked", ok_cb, false)
   end
 end
 -- WebPage Fanction by MehdiHS!
@@ -348,11 +348,11 @@ local function lock_group_webpage(msg, data, target)
   end
   local group_webpage_lock = data[tostring(target)]['settings']['lock_webpage']
   if group_webpage_lock == 'yes' then
-    return reply_msg(msg.id,"<i> #WebLink Posting is #already locked!</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #WebLink Posting is #already locked!", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_webpage'] = 'yes'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #WebLink posting has been #locked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #WebLink posting has been #locked", ok_cb, false)
   end
 end
 
@@ -362,11 +362,11 @@ local function unlock_group_webpage(msg, data, target)
   end
   local group_webpage_lock = data[tostring(target)]['settings']['lock_webpage']
   if group_webpage_lock == 'no' then
-    return reply_msg(msg.id,"<i> #WebLink Posting is #already unlocked,/i>", ok_cb, false)
+    return reply_msg(msg.id,"> #WebLink Posting is #already unlocked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_webpage'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #WebLink posting has been #unlocked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #WebLink posting has been #unlocked", ok_cb, false)
   end
 end
 -- Anti Fwd Fanction by MehdiHS!
@@ -376,11 +376,11 @@ local function lock_group_fwd(msg, data, target)
   end
   local group_fwd_lock = data[tostring(target)]['settings']['lock_fwd']
   if group_fwd_lock == 'yes' then
-    return reply_msg(msg.id,"<i> #Forward Msg is #already locked!</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Forward Msg is #already locked!", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_fwd'] = 'yes'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Forward Msg has been #locked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Forward Msg has been #locked", ok_cb, false)
   end
 end
 
@@ -390,11 +390,11 @@ local function unlock_group_fwd(msg, data, target)
   end
   local group_fwd_lock = data[tostring(target)]['settings']['lock_fwd']
   if group_fwd_lock == 'no' then
-    return reply_msg(msg.id,"<i> #Forward Msg is #already unlocked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Forward Msg is #already unlocked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_fwd'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Forward Msg has been #unlocked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Forward Msg has been #unlocked", ok_cb, false)
   end
 end
 -- lock badword Fanction by MehdiHS!
@@ -404,11 +404,11 @@ local function lock_group_badw(msg, data, target)
   end
   local group_badw_lock = data[tostring(target)]['settings']['lock_badw']
   if group_badw_lock == 'yes' then
-    return reply_msg(msg.id,"<i> #Badwords is #already locked!</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Badwords is #already locked!", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_badw'] = 'yes'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Badwords Has been #locked!</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Badwords Has been #locked!", ok_cb, false)
   end
 end
 
@@ -418,11 +418,11 @@ local function unlock_group_badw(msg, data, target)
   end
   local group_badw_lock = data[tostring(target)]['settings']['lock_badw']
   if group_badw_lock == 'no' then
-    return reply_msg(msg.id,"<i> #Badwords is #already unlocked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Badwords is #already unlocked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_badw'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Badwords has been #unlocked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Badwords has been #unlocked", ok_cb, false)
   end
 end
 -- lock emoji Fanction by MehdiHS!
@@ -432,11 +432,11 @@ local function lock_group_emoji(msg, data, target)
   end
   local group_emoji_lock = data[tostring(target)]['settings']['lock_emoji']
   if group_emoji_lock == 'yes' then
-    return reply_msg(msg.id,"<i> #Emoji is #already locked!</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Emoji is #already locked!", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_emoji'] = 'yes'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Emoji Has been #locked!</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Emoji Has been #locked!", ok_cb, false)
   end
 end
 
@@ -446,11 +446,11 @@ local function unlock_group_emoji(msg, data, target)
   end
   local group_emoji_lock = data[tostring(target)]['settings']['lock_emoji']
   if group_emoji_lock == 'no' then
-    return reply_msg(msg.id,"<i> #Emoji is #already unlocked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Emoji is #already unlocked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_emoji'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Emoji has been #unlocked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Emoji has been #unlocked", ok_cb, false)
   end
 end
 -- lock English Fanction by MehdiHS!
@@ -460,11 +460,11 @@ local function lock_group_eng(msg, data, target)
   end
   local group_eng_lock = data[tostring(target)]['settings']['lock_eng']
   if group_eng_lock == 'yes' then
-    return reply_msg(msg.id,"<i>#English is #already locked!</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #English is #already locked!", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_eng'] = 'yes'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #English Has been #locked!</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #English Has been #locked!", ok_cb, false)
   end
 end
 
@@ -474,11 +474,11 @@ local function unlock_group_eng(msg, data, target)
   end
   local group_eng_lock = data[tostring(target)]['settings']['lock_eng']
   if group_eng_lock == 'no' then
-    return reply_msg(msg.id,"<i> #English is #already unlocked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #English is #already unlocked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_eng'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #English has been #unlocked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #English has been #unlocked", ok_cb, false)
   end
 end
 local function unlock_group_membermod(msg, data, target)
@@ -487,11 +487,11 @@ local function unlock_group_membermod(msg, data, target)
   end
   local group_member_lock = data[tostring(target)]['settings']['lock_member']
   if group_member_lock == 'no' then
-    return reply_msg(msg.id,"<i> SuperGroup #members are #not locked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> SuperGroup #members are #not locked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_member'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b>SuperGroup #members has been #unlocked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> SuperGroup #members has been #unlocked", ok_cb, false)
   end
 end
 
@@ -501,11 +501,11 @@ local function lock_group_rtl(msg, data, target)
   end
   local group_rtl_lock = data[tostring(target)]['settings']['lock_rtl']
   if group_rtl_lock == 'yes' then
-    return reply_msg(msg.id,"<i> #RTL is #already locked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #RTL is #already locked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_rtl'] = 'yes'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b>#RTL has been #Locked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #RTL has been #Locked", ok_cb, false)
   end
 end
 
@@ -515,11 +515,11 @@ local function unlock_group_rtl(msg, data, target)
   end
   local group_rtl_lock = data[tostring(target)]['settings']['lock_rtl']
   if group_rtl_lock == 'no' then
-    return reply_msg(msg.id,"<i> #RTL is #already unlocked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #RTL is #already unlocked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_rtl'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #RTL has been #unlocked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #RTL has been #unlocked", ok_cb, false)
   end
 end
 
@@ -529,11 +529,11 @@ local function lock_group_tgservice(msg, data, target)
   end
   local group_tgservice_lock = data[tostring(target)]['settings']['lock_tgservice']
   if group_tgservice_lock == 'yes' then
-    return reply_msg(msg.id,"<i> #TgService is #already locked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #TgService is #already locked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_tgservice'] = 'yes'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #TGservice has been #locked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #TGservice has been #locked", ok_cb, false)
   end
 end
 
@@ -543,11 +543,11 @@ local function unlock_group_tgservice(msg, data, target)
   end
   local group_tgservice_lock = data[tostring(target)]['settings']['lock_tgservice']
   if group_tgservice_lock == 'no' then
-    return reply_msg(msg.id,"<i>#TgService Is #Not Locked!</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #TgService Is #Not Locked!", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_tgservice'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b>#TGservice has been #unlocked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #TGservice has been #unlocked", ok_cb, false)
   end
 end
 
@@ -557,11 +557,11 @@ local function lock_group_sticker(msg, data, target)
   end
   local group_sticker_lock = data[tostring(target)]['settings']['lock_sticker']
   if group_sticker_lock == 'yes' then
-    return reply_msg(msg.id,"<i> #Sticker posting is #already locked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Sticker posting is #already locked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_sticker'] = 'yes'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Sticker posting has been #locked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Sticker posting has been #locked", ok_cb, false)
   end
 end
 
@@ -571,11 +571,11 @@ local function unlock_group_sticker(msg, data, target)
   end
   local group_sticker_lock = data[tostring(target)]['settings']['lock_sticker']
   if group_sticker_lock == 'no' then
-    return reply_msg(msg.id,"<i> #Sticker posting is #already unlocked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Sticker posting is #already unlocked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_sticker'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Sticker posting has been #unlocked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Sticker posting has been #unlocked", ok_cb, false)
   end
 end
 
@@ -585,11 +585,11 @@ local function lock_group_contacts(msg, data, target)
   end
   local group_contacts_lock = data[tostring(target)]['settings']['lock_contacts']
   if group_contacts_lock == 'yes' then
-    return reply_msg(msg.id,"<i> #Contact posting is #already locked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Contact posting is #already locked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_contacts'] = 'yes'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Contact posting has been #locked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Contact posting has been #locked", ok_cb, false)
   end
 end
 
@@ -599,11 +599,11 @@ local function unlock_group_contacts(msg, data, target)
   end
   local group_contacts_lock = data[tostring(target)]['settings']['lock_contacts']
   if group_contacts_lock == 'no' then
-    return reply_msg(msg.id,"<i> #Contact posting is #already unlocked</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Contact posting is #already unlocked", ok_cb, false)
   else
     data[tostring(target)]['settings']['lock_contacts'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Contact posting has been #unlocked</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Contact posting has been #unlocked", ok_cb, false)
   end
 end
 
@@ -613,11 +613,11 @@ local function enable_strict_rules(msg, data, target)
   end
   local group_strict_lock = data[tostring(target)]['settings']['strict']
   if group_strict_lock == 'yes' then
-    return reply_msg(msg.id,"<i>#Settings are #already strictly enforced</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Settings are #already strictly enforced", ok_cb, false)
   else
     data[tostring(target)]['settings']['strict'] = 'yes'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Settings will be #strictly_enforced</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Settings will be #strictly_enforced", ok_cb, false)
   end
 end
 
@@ -627,11 +627,11 @@ local function disable_strict_rules(msg, data, target)
   end
   local group_strict_lock = data[tostring(target)]['settings']['strict']
   if group_strict_lock == 'no' then
-    return reply_msg(msg.id,"<i> #Settings are #not strictly enforced</i>", ok_cb, false)
+    return reply_msg(msg.id,"> #Settings are #not strictly enforced", ok_cb, false)
   else
     data[tostring(target)]['settings']['strict'] = 'no'
     save_data(_config.moderation.data, data)
-    return reply_msg(msg.id,"<b> #Settings will #not be strictly enforced</b>", ok_cb, false)
+    return reply_msg(msg.id,"> #Settings will #not be strictly enforced", ok_cb, false)
   end
 end
 --End supergroup locks
@@ -789,7 +789,7 @@ end
 		end
 	end
   local settings = data[tostring(target)]['settings']
-  local text = "<i>SuperGroup settings:</i>\n\n<b>Lock Links</b> > "..settings.lock_link.."\n<b>Lock Webpage</b> > "..settings.lock_webpage.."\n<b>Lock Tag</b> > "..settings.lock_tag.."\n<b>Lock Emoji</b> > "..settings.lock_emoji.."\n<b>Lock English</b> > "..settings.lock_eng.."\n<b>Lock Badword</b> > "..settings.lock_badw.."\n<b>Lock Flood</b> > "..settings.flood.."\n<b>Flood sensitivity</b> > "..NUM_MSG_MAX.."\n<b>Lock Spam</b> > "..settings.lock_spam.."\n<b>Lock Contacts</b> > "..settings.lock_contacts.."\n<b>Lock Arabic/Persian</b> > "..settings.lock_arabic.."\n<b>Lock Member</b> > "..settings.lock_member.."\n<b>Lock RTL</b> > "..settings.lock_rtl.."\n<b>Lock Forward</b> > "..settings.lock_fwd.."\n<b>Lock TGservice</b> > "..settings.lock_tgservice.."\n<b>Lock Sticker</b> > "..settings.lock_sticker.."\n<b>Public</b> > "..settings.public.."\n<b>Strict Settings</b> > "..settings.strict
+  local text = "SuperGroup settings:\n\nLock Links > "..settings.lock_link.."\nLock Webpage > "..settings.lock_webpage.."\nLock Tag > "..settings.lock_tag.."\nLock Emoji > "..settings.lock_emoji.."\nLock English > "..settings.lock_eng.."\nLock Badword > "..settings.lock_badw.."\nLock Flood > "..settings.flood.."\nFlood sensitivity > "..NUM_MSG_MAX.."\nLock Spam > "..settings.lock_spam.."\nLock Contacts > "..settings.lock_contacts.."\nLock Arabic/Persian > "..settings.lock_arabic.."\nLock Member > "..settings.lock_member.."\nLock RTL > "..settings.lock_rtl.."\nLock Forward > "..settings.lock_fwd.."\nLock TGservice > "..settings.lock_tgservice.."\nLock Sticker > "..settings.lock_sticker.."\nPublic > "..settings.public.."\nStrict Settings > "..settings.strict
   reply_msg(msg.id, text, ok_cb, false)
 end
 
@@ -873,7 +873,7 @@ function get_message_callback(extra, success, result)
 	local get_cmd = extra.get_cmd
 	local msg = extra.msg
 	local data = load_data(_config.moderation.data)
-	local print_name = user_print_name(msg.from):gsub("?", "")
+	local print_name = user_print_name(msg.from):gsub("‮", "")
 	local name_log = print_name:gsub("_", " ")
     if get_cmd == "id" and not result.action then
 		local channel = 'channel#id'..result.to.peer_id
@@ -974,7 +974,7 @@ function get_message_callback(extra, success, result)
 	elseif get_cmd == "promote" then
 		local receiver = result.to.peer_id
 		local full_name = (result.from.first_name or '')..' '..(result.from.last_name or '')
-		local member_name = full_name:gsub("?", "")
+		local member_name = full_name:gsub("‮", "")
 		local member_username = member_name:gsub("_", " ")
 		if result.from.username then
 			member_username = '@'.. result.from.username
@@ -987,7 +987,7 @@ function get_message_callback(extra, success, result)
 		end
 	elseif get_cmd == "demote" then
 		local full_name = (result.from.first_name or '')..' '..(result.from.last_name or '')
-		local member_name = full_name:gsub("?", "")
+		local member_name = full_name:gsub("‮", "")
 		local member_username = member_name:gsub("_", " ")
     if result.from.username then
 		member_username = '@'.. result.from.username
@@ -1189,7 +1189,7 @@ local function in_channel_cb(cb_extra, success, result)
   local receiver = cb_extra.receiver
   local msg = cb_extra.msg
   local data = load_data(_config.moderation.data)
-  local print_name = user_print_name(cb_extra.msg.from):gsub("?", "")
+  local print_name = user_print_name(cb_extra.msg.from):gsub("‮", "")
   local name_log = print_name:gsub("_", " ")
   local member = cb_extra.username
   local memberid = cb_extra.user_id
@@ -1342,7 +1342,7 @@ local function run(msg, matches)
 	if msg.to.type == 'channel' then
 	local support_id = msg.from.id
 	local receiver = get_receiver(msg)
-	local print_name = user_print_name(msg.from):gsub("?", "")
+	local print_name = user_print_name(msg.from):gsub("‮", "")
 	local name_log = print_name:gsub("_", " ")
 	local data = load_data(_config.moderation.data)
 		if matches[1] == 'add' and not matches[2] then
@@ -1492,7 +1492,7 @@ local function run(msg, matches)
 				resolve_username(username,  callbackres, cbres_extra)
 			else
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested SuperGroup ID")
-				return reply_msg(msg.id, "> SuperGroup ID: "..msg.to.id.."\n> SuperGroup Name: "..msg.to.title.."\n> First Name: "..(msg.from.first_name or '').."\n> Last Name: "..(msg.from.last_name or '').."\n> Your ID: "..msg.from.id.."\n> Username: @"..(msg.from.username or '').."", ok_cb, false)		end
+				return reply_msg(msg.id, "> SuperGroup ID: "..msg.to.id.."\n> SuperGroup Name: "..msg.to.title.."\n> First Name: "..(msg.from.first_name or '').."\n> Last Name: "..(msg.from.last_name or '').."\n> Your ID: "..msg.from.id.."\n> Username: @"..(msg.from.username or '').."\n> Phone Number: +"..(msg.from.phone or '404 Not Found!').."\n> Your Link: Telegram.Me/"..(msg.from.username or '').."\n> Group Type: #SuperGroup", ok_cb, false)		end
 		end
 
 		if matches[1] == 'kickme' then
@@ -2300,19 +2300,19 @@ local function run(msg, matches)
 		end
 
 		if matches[1] == 'help' and not is_momod(msg) then
-			text = "ليست دستورات براي اعضاي معمولي:\n\n??????\n#topstats\nنشان دادن ? نفر از فعال ترين اعضاي گروه!\n??????\n#filterlist\nنشان دادن کلمه هاي فيلتر شده.\n??????\n#id\nنمايش اطلاعات اکانت شما .\n??????\n#sticker [reply]\nبا ريپلاي کردن عکس ميتوانيد آن را به استيکر تبديل کنيد!\n#sticker [text]\nتبديل متن شما به استيکر ...\n#sticker [text] [color]\nتبديل متن شما به استيکر با تنظيم رنگ ...\n#sticker [text] [color] [font]\n\nتبديل متن شما به استيکر با تنظيم رنگ و فونت...\n( Supported fonts : [fun|italic|bold|arial] )\n( Supported colors : [black|red|blue|yellow|pink|orange|brown] )\nتبديل متن شما به استيکر ...\n??????\n#photo [reply]\nبا ريپلاي کردن استيکر ميتوانيد آن را به عکس تبديل کنيد!\n??????\n#vc [kalame](زبان ها : Farsi,En)\nتبديل کلمه به صدا\n??????\n#weather [اسم شهر]\nدريافت اطلاعات آب و هواي يک منطقه\n??????\n#aparat [کلمه] \nجستوجو در آپارات!\n??????\n#me\nنمايش تعداد پيام هاي ارسال شده از شما\n??????\n#qr [کلمه]\nتبديل کلمه،لينک،... شما به بارکد\n??????\n#insta [id, Post Link]\nدريافت اطلاعات ايدي و ... از اينستاگرام!\n??????\n#calc [2*2]\nمحاسبه جمع تفريق ضرب و...\n??????\n#porn [text]\nجستجو در 7 سايت +18\n??????\n#time\nدريافت زمان دقيق!\n??????\n#support \nدريافت لينک گروه پشتيباني!\n??????\n#version\nنمايش ورژن و ادمين هاي ربات!\n??????\n#plist\nدريافت ليست قيمت براي خريد گروه...\n??????\n#write [text]\nطراحي کلمه مورد تظر با 17 فونت!\n??????\n#feedback [text]\nشما ميتوانيد با اين دستور نظرات و پيشنهادات خود را براي ما ارسال کنيد...\n??????\n| Channel : @pedaret |\n"
+			text = "لیست دستورات برای اعضای معمولی:\n\n➖➖➖➖➖➖\n#topstats\nنشان دادن ۳ نفر از فعال ترین اعضای گروه!\n➖➖➖➖➖➖\n#filterlist\nنشان دادن کلمه های فیلتر شده.\n➖➖➖➖➖➖\n#id\nنمایش اطلاعات اکانت شما .\n➖➖➖➖➖➖\n#sticker [reply]\nبا ریپلای کردن عکس میتوانید آن را به استیکر تبدیل کنید!\n#sticker [text]\nتبدیل متن شما به استیکر ...\n#sticker [text] [color]\nتبدیل متن شما به استیکر با تنظیم رنگ ...\n#sticker [text] [color] [font]\n\nتبدیل متن شما به استیکر با تنظیم رنگ و فونت...\n( Supported fonts : [fun|italic|bold|arial] )\n( Supported colors : [black|red|blue|yellow|pink|orange|brown] )\nتبدیل متن شما به استیکر ...\n➖➖➖➖➖➖\n#photo [reply]\nبا ریپلای کردن استیکر میتوانید آن را به عکس تبدیل کنید!\n➖➖➖➖➖➖\n#vc [kalame](زبان ها : Farsi,En)\nتبدیل کلمه به صدا\n➖➖➖➖➖➖\n#weather [اسم شهر]\nدریافت اطلاعات آب و هوای یک منطقه\n➖➖➖➖➖➖\n#aparat [کلمه] \nجستوجو در آپارات!\n➖➖➖➖➖➖\n#me\nنمایش تعداد پیام های ارسال شده از شما\n➖➖➖➖➖➖\n#qr [کلمه]\nتبدیل کلمه،لینک،... شما به بارکد\n➖➖➖➖➖➖\n#insta [id, Post Link]\nدریافت اطلاعات ایدی و ... از اینستاگرام!\n➖➖➖➖➖➖\n#calc [2*2]\nمحاسبه جمع تفریق ضرب و...\n➖➖➖➖➖➖\n#porn [text]\nجستجو در 7 سایت +18\n➖➖➖➖➖➖\n#time\nدریافت زمان دقیق!\n➖➖➖➖➖➖\n#support \nدریافت لینک گروه پشتیبانی!\n➖➖➖➖➖➖\n#version\nنمایش ورژن و ادمین های ربات!\n➖➖➖➖➖➖\n#plist\nدریافت لیست قیمت برای خرید گروه...\n➖➖➖➖➖➖\n#write [text]\nطراحی کلمه مورد تظر با 17 فونت!\n➖➖➖➖➖➖\n#feedback [text]\nشما میتوانید با این دستور نظرات و پیشنهادات خود را برای ما ارسال کنید...\n➖➖➖➖➖➖\n| Channel : @Black_CH |\n"
 			reply_msg(msg.id, text, ok_cb, false)
 		elseif matches[1] == 'help' and is_momod(msg) then
-			text = "راهنماي بات ضد اسپم maximus\nدرصورت ابهام ميتونيد با دستور /support لينک گروه پشتيباني را دريافت کنيد و  مشکلتون رو مطرح کنيد! \n\n??????\n#ban @username\nاخراج کردن يک فرد از گروه به صورت دائمي\n#unban @username\nخارج کردن يک فرد از حالت اخراج دائمي!\n#banlist\nليست افراد بن شده.\n??????\n#info\nنمايش اطلاعات اصلي گروه\n??????\n#del [reply|number]\nپاک کردن تعداد پيام هاي مورد نظر با ريپلي و تعداد!\n??????\n#topstats\nنشان دادن ? نفر از فعال ترين اعضاي گروه!\n??????\n#admins\nنمايش ليست ادمين هاي گروه\n??????\n#filter [word]\nفيلتر کردن يک کلمه\n#remword [word]\nحذف کردن کلمه از ليست فيلتر کلمات\n#filterlist\nنشان دادن کلمه هاي فيلتر شده.\n??????\n#owner\nنمايش آيدي خريدار گروه.\n??????\n#modlist\nنمايش ليست ناظم ها.\n??????\n#bots\nليست روبات هاي گروه.\n??????\n#who\nليست اعضاي گروه در يک فايل متني.\n(.txt)\n??????\n#kick [reply|id]\nبلاک کردن و کيک کردن فرد از گروه.\n??????\n#setwlc [your text]\nتنظيم يک متن به عنوان متن خوشامد گويي\n??????\n#setwlc rules [your text]\nتنظيم کردن يک متن به عنوان پلام خوشامد گويي + قوانين گروه.\n??????\n#delwlc\nحذف پيام خوشامد گويي.\n??????\n#id\nنمايش اطلاعات اکانت شما .\n??????\n#sticker [reply]\nبا ريپلاي کردن عکس ميتوانيد آن را به استيکر تبديل کنيد!\n#sticker [text]\nتبديل متن شما به استيکر ...\n#sticker [text] [color]\nتبديل متن شما به استيکر با تنظيم رنگ ...\n#sticker [text] [color] [font]\n\nتبديل متن شما به استيکر با تنظيم رنگ و فونت...\n( Supported fonts : [fun|italic|bold|arial] )\n( Supported colors : [black|red|blue|yellow|pink|orange|brown] )\nتبديل متن شما به استيکر ...\n??????\n#photo [reply]\nبا ريپلاي کردن استيکر ميتوانيد آن را به عکس تبديل کنيد!\n??????\n#vc [kalame](زبان ها : Farsi,En)\nتبديل کلمه به صدا\n??????\n#weather [اسم شهر]\nدريافت اطلاعات آب و هواي يک منطقه\n??????\n#aparat [کلمه] \nجستوجو در آپارات!\n??????\n#me\nنمايش تعداد پيام هاي ارسال شده از شما\n??????\n#qr [کلمه]\nتبديل کلمه،لينک،... شما به بارکد\n??????\n#insta [id, Post Link]\nدريافت اطلاعات ايدي و ... از اينستاگرام!\n??????\n#write [text]\nطراحي کلمه مورد تظر با 17 فونت!\n??????\n#calc [2*2]\nمحاسبه جمع تفريق ضرب و...\n??????\n#porn [text]\nجستجو در 7 سايت +\n??????\n#time\nدريافت زمان دقيق!\n??????\n#support \nدريافت لينک گروه پشتيباني!\n??????\n#setowner [reply, username]\nست کردن کاربر به عنوان خريدار گروه\n#promote [username|id]\nارتقاء مقام کاربر به ناظم گروه\n#demote [username|id]\nخلع مقام کردن کاربر از سمت ناظم ها\n??????\n#setname [text]\nتغيير اسم گروه\n#setphoto\nجايگزين کردن عکس گروه\n#setrules [text]\nگذاشتن قوانين براي گروه\n#setabout [text]\nگذاشتن متن توضيحات براي سوپر گروه(اين متن در بخش توضيحات گروه هم نمايش داده ميشه)\n??????\n#newlink\nساختن لينک جديد\n#link\nگرفتن لينک\n#linkpv\nارسال لينک گروه در پيوي شما!\n??????\n#rules\nنمايش قوانين\n??????\n#lock [links|flood|spam|Arabic|member|rtl|sticker|TgService|contacts|forward|badword|emoji|english|tag|webpage|strict]\nقفل کردن لينک گروها-اسپم-متن و اسم هاي بزرگ -زبان فارسي-تعداد اعضا-کاراکتر هاي غير عادي-استيکر-مخاطبين-فروارد-فوش-اموجي-انگليسي-تگ-لينک سايت\n\nدقت کنيد اگر گذينه اخري strict روشن باشد کاربر از گروه کيک ميشود و پيغام پاک ميشه در غير اين صورت فقط پيغام پاک ميشود\n??????\n#unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|TgService|strict|forward|badword|emoji|english]\nباز کردن قفل امکانات بالا\n??????\n#mute [all|audio|gifs|photo|video|text]\nپاک کردن سريع همه پيغام ها-عکس ها-گيف ها-صدا هاي ضبط شده-فيلم-متن\n??????\n#unmute [all|audio|gifs|photo|video|text]\nباز کردن قفل امکانات بالا\n??????\n#setflood [value]\nگذاشتن value به عنوان حساسيت اسپم\n??????\n#settings\nنمايش تنظيمات گروه\n??????\n#muteslist\nنمايش نوع پيغام هاي سايلنت شده\n*A \"muted\" message type is auto-deleted if posted\n??????\n#muteuser [username]\nسايلنت کردن يک کاربر خاص در گروه\nفقط خريدار (owner) ميتونه کسيو سايلنت کنه ولي ناظم ها (Mods) ميتونند فرد را از سايلنتي در بياورند\n??????\n#mutelist\nنمايش ليست افراد سايلنت شده\n??????\n#clean [rules|about|modlist|mutelist|bots]\nپاک کردن ليست ناظم ها-درباره-ليست سايلنت شده ها-قوانين-بات ها\n??????\n#log\nبرگرداندن تاريخچه گروه در يک فايل متني\n??????\n#version\nنمايش ورژن و ادمين هاي ربات!\n??????\n#plist\nدريافت ليست قيمت براي خريد گروه...\n??????\n#feedback [text]\nشما ميتوانيد با اين دستور نظرات و پيشنهادات خود را براي ما ارسال کنيد...\n??????\n| Channel : @pedaret |\n"
+			text = "راهنمای بات ضد اسپم بلک\nدرصورت ابهام میتونید با دستور /support لینک گروه پشتیبانی را دریافت کنید و  مشکلتون رو مطرح کنید! \n\n➖➖➖➖➖➖\n#ban @username\nاخراج کردن یک فرد از گروه به صورت دائمی\n#unban @username\nخارج کردن یک فرد از حالت اخراج دائمی!\n#banlist\nلیست افراد بن شده.\n➖➖➖➖➖➖\n#info\nنمایش اطلاعات اصلی گروه\n➖➖➖➖➖➖\n#del [reply|number]\nپاک کردن تعداد پیام های مورد نظر با ریپلی و تعداد!\n➖➖➖➖➖➖\n#topstats\nنشان دادن ۳ نفر از فعال ترین اعضای گروه!\n➖➖➖➖➖➖\n#admins\nنمایش لیست ادمین های گروه\n➖➖➖➖➖➖\n#filter [word]\nفیلتر کردن یک کلمه\n#remword [word]\nحذف کردن کلمه از لیست فیلتر کلمات\n#filterlist\nنشان دادن کلمه های فیلتر شده.\n➖➖➖➖➖➖\n#owner\nنمایش آیدی خریدار گروه.\n➖➖➖➖➖➖\n#modlist\nنمایش لیست ناظم ها.\n➖➖➖➖➖➖\n#bots\nلیست روبات های گروه.\n➖➖➖➖➖➖\n#who\nلیست اعضای گروه در یک فایل متنی.\n(.txt)\n➖➖➖➖➖➖\n#kick [reply|id]\nبلاک کردن و کیک کردن فرد از گروه.\n➖➖➖➖➖➖\n#setwlc [your text]\nتنظیم یک متن به عنوان متن خوشامد گویی\n➖➖➖➖➖➖\n#setwlc rules [your text]\nتنظیم کردن یک متن به عنوان پلام خوشامد گویی + قوانین گروه.\n➖➖➖➖➖➖\n#delwlc\nحذف پیام خوشامد گویی.\n➖➖➖➖➖➖\n#id\nنمایش اطلاعات اکانت شما .\n➖➖➖➖➖➖\n#sticker [reply]\nبا ریپلای کردن عکس میتوانید آن را به استیکر تبدیل کنید!\n#sticker [text]\nتبدیل متن شما به استیکر ...\n#sticker [text] [color]\nتبدیل متن شما به استیکر با تنظیم رنگ ...\n#sticker [text] [color] [font]\n\nتبدیل متن شما به استیکر با تنظیم رنگ و فونت...\n( Supported fonts : [fun|italic|bold|arial] )\n( Supported colors : [black|red|blue|yellow|pink|orange|brown] )\nتبدیل متن شما به استیکر ...\n➖➖➖➖➖➖\n#photo [reply]\nبا ریپلای کردن استیکر میتوانید آن را به عکس تبدیل کنید!\n➖➖➖➖➖➖\n#vc [kalame](زبان ها : Farsi,En)\nتبدیل کلمه به صدا\n➖➖➖➖➖➖\n#weather [اسم شهر]\nدریافت اطلاعات آب و هوای یک منطقه\n➖➖➖➖➖➖\n#aparat [کلمه] \nجستوجو در آپارات!\n➖➖➖➖➖➖\n#me\nنمایش تعداد پیام های ارسال شده از شما\n➖➖➖➖➖➖\n#qr [کلمه]\nتبدیل کلمه،لینک،... شما به بارکد\n➖➖➖➖➖➖\n#insta [id, Post Link]\nدریافت اطلاعات ایدی و ... از اینستاگرام!\n➖➖➖➖➖➖\n#write [text]\nطراحی کلمه مورد تظر با 17 فونت!\n➖➖➖➖➖➖\n#calc [2*2]\nمحاسبه جمع تفریق ضرب و...\n➖➖➖➖➖➖\n#porn [text]\nجستجو در 7 سایت +\n➖➖➖➖➖➖\n#time\nدریافت زمان دقیق!\n➖➖➖➖➖➖\n#support \nدریافت لینک گروه پشتیبانی!\n➖➖➖➖➖➖\n#setowner [reply, username]\nست کردن کاربر به عنوان خریدار گروه\n#promote [username|id]\nارتقاء مقام کاربر به ناظم گروه\n#demote [username|id]\nخلع مقام کردن کاربر از سمت ناظم ها\n➖➖➖➖➖➖\n#setname [text]\nتغییر اسم گروه\n#setphoto\nجایگزین کردن عکس گروه\n#setrules [text]\nگذاشتن قوانین برای گروه\n#setabout [text]\nگذاشتن متن توضیحات برای سوپر گروه(این متن در بخش توضیحات گروه هم نمایش داده میشه)\n➖➖➖➖➖➖\n#newlink\nساختن لینک جدید\n#link\nگرفتن لینک\n#linkpv\nارسال لینک گروه در پیوی شما!\n➖➖➖➖➖➖\n#rules\nنمایش قوانین\n➖➖➖➖➖➖\n#lock [links|flood|spam|Arabic|member|rtl|sticker|TgService|contacts|forward|badword|emoji|english|tag|webpage|strict]\nقفل کردن لینک گروها-اسپم-متن و اسم های بزرگ -زبان فارسی-تعداد اعضا-کاراکتر های غیر عادی-استیکر-مخاطبین-فروارد-فوش-اموجی-انگلیسی-تگ-لینک سایت\n\nدقت کنید اگر گذینه اخری strict روشن باشد کاربر از گروه کیک میشود و پیغام پاک میشه در غیر این صورت فقط پیغام پاک میشود\n➖➖➖➖➖➖\n#unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|TgService|strict|forward|badword|emoji|english]\nباز کردن قفل امکانات بالا\n➖➖➖➖➖➖\n#mute [all|audio|gifs|photo|video|text]\nپاک کردن سریع همه پیغام ها-عکس ها-گیف ها-صدا های ضبط شده-فیلم-متن\n➖➖➖➖➖➖\n#unmute [all|audio|gifs|photo|video|text]\nباز کردن قفل امکانات بالا\n➖➖➖➖➖➖\n#setflood [value]\nگذاشتن value به عنوان حساسیت اسپم\n➖➖➖➖➖➖\n#settings\nنمایش تنظیمات گروه\n➖➖➖➖➖➖\n#muteslist\nنمایش نوع پیغام های سایلنت شده\n*A \"muted\" message type is auto-deleted if posted\n➖➖➖➖➖➖\n#muteuser [username]\nسایلنت کردن یک کاربر خاص در گروه\nفقط خریدار (owner) میتونه کسیو سایلنت کنه ولی ناظم ها (Mods) میتونند فرد را از سایلنتی در بیاورند\n➖➖➖➖➖➖\n#mutelist\nنمایش لیست افراد سایلنت شده\n➖➖➖➖➖➖\n#clean [rules|about|modlist|mutelist|bots]\nپاک کردن لیست ناظم ها-درباره-لیست سایلنت شده ها-قوانین-بات ها\n➖➖➖➖➖➖\n#log\nبرگرداندن تاریخچه گروه در یک فایل متنی\n➖➖➖➖➖➖\n#version\nنمایش ورژن و ادمین های ربات!\n➖➖➖➖➖➖\n#plist\nدریافت لیست قیمت برای خرید گروه...\n➖➖➖➖➖➖\n#feedback [text]\nشما میتوانید با این دستور نظرات و پیشنهادات خود را برای ما ارسال کنید...\n➖➖➖➖➖➖\n| Channel : @Black_CH |\n"
 			reply_msg(msg.id, text, ok_cb, false)
 		end
 		
 	if matches[1] == 'superhelp' and is_momod(msg) then
-			text = "راهنماي بات ضد اسپم maximus\nدرصورت ابهام ميتونيد با دستور /support لينک گروه پشتيباني را دريافت کنيد و  مشکلتون رو مطرح کنيد! \n\n??????\n#ban @username\nاخراج کردن يک فرد از گروه به صورت دائمي\n#unban @username\nخارج کردن يک فرد از حالت اخراج دائمي!\n#banlist\nليست افراد بن شده.\n??????\n#info\nنمايش اطلاعات اصلي گروه\n??????\n#del [reply|number]\nپاک کردن تعداد پيام هاي مورد نظر با ريپلي و تعداد!\n??????\n#topstats\nنشان دادن ? نفر از فعال ترين اعضاي گروه!\n??????\n#admins\nنمايش ليست ادمين هاي گروه\n??????\n#filter [word]\nفيلتر کردن يک کلمه\n#remword [word]\nحذف کردن کلمه از ليست فيلتر کلمات\n#filterlist\nنشان دادن کلمه هاي فيلتر شده.\n??????\n#owner\nنمايش آيدي خريدار گروه.\n??????\n#modlist\nنمايش ليست ناظم ها.\n??????\n#bots\nليست روبات هاي گروه.\n??????\n#who\nليست اعضاي گروه در يک فايل متني.\n(.txt)\n??????\n#kick [reply|id]\nبلاک کردن و کيک کردن فرد از گروه.\n??????\n#setwlc [your text]\nتنظيم يک متن به عنوان متن خوشامد گويي\n??????\n#setwlc rules [your text]\nتنظيم کردن يک متن به عنوان پلام خوشامد گويي + قوانين گروه.\n??????\n#delwlc\nحذف پيام خوشامد گويي.\n??????\n#id\nنمايش اطلاعات اکانت شما .\n??????\n#sticker [reply]\nبا ريپلاي کردن عکس ميتوانيد آن را به استيکر تبديل کنيد!\n#sticker [text]\nتبديل متن شما به استيکر ...\n#sticker [text] [color]\nتبديل متن شما به استيکر با تنظيم رنگ ...\n#sticker [text] [color] [font]\n\nتبديل متن شما به استيکر با تنظيم رنگ و فونت...\n( Supported fonts : [fun|italic|bold|arial] )\n( Supported colors : [black|red|blue|yellow|pink|orange|brown] )\nتبديل متن شما به استيکر ...\n??????\n#photo [reply]\nبا ريپلاي کردن استيکر ميتوانيد آن را به عکس تبديل کنيد!\n??????\n#vc [kalame](زبان ها : Farsi,En)\nتبديل کلمه به صدا\n??????\n#weather [اسم شهر]\nدريافت اطلاعات آب و هواي يک منطقه\n??????\n#aparat [کلمه] \nجستوجو در آپارات!\n??????\n#me\nنمايش تعداد پيام هاي ارسال شده از شما\n??????\n#qr [کلمه]\nتبديل کلمه،لينک،... شما به بارکد\n??????\n#insta [id, Post Link]\nدريافت اطلاعات ايدي و ... از اينستاگرام!\n??????\n#write [text]\nطراحي کلمه مورد تظر با 17 فونت!\n??????\n#calc [2*2]\nمحاسبه جمع تفريق ضرب و...\n??????\n#porn [text]\nجستجو در 7 سايت +\n??????\n#time\nدريافت زمان دقيق!\n??????\n#support \nدريافت لينک گروه پشتيباني!\n??????\n#setowner [reply, username]\nست کردن کاربر به عنوان خريدار گروه\n#promote [username|id]\nارتقاء مقام کاربر به ناظم گروه\n#demote [username|id]\nخلع مقام کردن کاربر از سمت ناظم ها\n??????\n#setname [text]\nتغيير اسم گروه\n#setphoto\nجايگزين کردن عکس گروه\n#setrules [text]\nگذاشتن قوانين براي گروه\n#setabout [text]\nگذاشتن متن توضيحات براي سوپر گروه(اين متن در بخش توضيحات گروه هم نمايش داده ميشه)\n??????\n#newlink\nساختن لينک جديد\n#link\nگرفتن لينک\n#linkpv\nارسال لينک گروه در پيوي شما!\n??????\n#rules\nنمايش قوانين\n??????\n#lock [links|flood|spam|Arabic|member|rtl|sticker|TgService|contacts|forward|badword|emoji|english|tag|webpage|strict]\nقفل کردن لينک گروها-اسپم-متن و اسم هاي بزرگ -زبان فارسي-تعداد اعضا-کاراکتر هاي غير عادي-استيکر-مخاطبين-فروارد-فوش-اموجي-انگليسي-تگ-لينک سايت\n\nدقت کنيد اگر گذينه اخري strict روشن باشد کاربر از گروه کيک ميشود و پيغام پاک ميشه در غير اين صورت فقط پيغام پاک ميشود\n??????\n#unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|TgService|strict|forward|badword|emoji|english]\nباز کردن قفل امکانات بالا\n??????\n#mute [all|audio|gifs|photo|video|text]\nپاک کردن سريع همه پيغام ها-عکس ها-گيف ها-صدا هاي ضبط شده-فيلم-متن\n??????\n#unmute [all|audio|gifs|photo|video|text]\nباز کردن قفل امکانات بالا\n??????\n#setflood [value]\nگذاشتن value به عنوان حساسيت اسپم\n??????\n#settings\nنمايش تنظيمات گروه\n??????\n#muteslist\nنمايش نوع پيغام هاي سايلنت شده\n*A \"muted\" message type is auto-deleted if posted\n??????\n#muteuser [username]\nسايلنت کردن يک کاربر خاص در گروه\nفقط خريدار (owner) ميتونه کسيو سايلنت کنه ولي ناظم ها (Mods) ميتونند فرد را از سايلنتي در بياورند\n??????\n#mutelist\nنمايش ليست افراد سايلنت شده\n??????\n#clean [rules|about|modlist|mutelist|bots]\nپاک کردن ليست ناظم ها-درباره-ليست سايلنت شده ها-قوانين-بات ها\n??????\n#log\nبرگرداندن تاريخچه گروه در يک فايل متني\n??????\n#version\nنمايش ورژن و ادمين هاي ربات!\n??????\n#plist\nدريافت ليست قيمت براي خريد گروه...\n??????\n#feedback [text]\nشما ميتوانيد با اين دستور نظرات و پيشنهادات خود را براي ما ارسال کنيد...\n??????\n| Channel : @pedaret |\n"
+			text = "راهنمای بات ضد اسپم بلک\nدرصورت ابهام میتونید با دستور /support لینک گروه پشتیبانی را دریافت کنید و  مشکلتون رو مطرح کنید! \n\n➖➖➖➖➖➖\n#ban @username\nاخراج کردن یک فرد از گروه به صورت دائمی\n#unban @username\nخارج کردن یک فرد از حالت اخراج دائمی!\n#banlist\nلیست افراد بن شده.\n➖➖➖➖➖➖\n#info\nنمایش اطلاعات اصلی گروه\n➖➖➖➖➖➖\n#del [reply|number]\nپاک کردن تعداد پیام های مورد نظر با ریپلی و تعداد!\n➖➖➖➖➖➖\n#topstats\nنشان دادن ۳ نفر از فعال ترین اعضای گروه!\n➖➖➖➖➖➖\n#admins\nنمایش لیست ادمین های گروه\n➖➖➖➖➖➖\n#filter [word]\nفیلتر کردن یک کلمه\n#remword [word]\nحذف کردن کلمه از لیست فیلتر کلمات\n#filterlist\nنشان دادن کلمه های فیلتر شده.\n➖➖➖➖➖➖\n#owner\nنمایش آیدی خریدار گروه.\n➖➖➖➖➖➖\n#modlist\nنمایش لیست ناظم ها.\n➖➖➖➖➖➖\n#bots\nلیست روبات های گروه.\n➖➖➖➖➖➖\n#who\nلیست اعضای گروه در یک فایل متنی.\n(.txt)\n➖➖➖➖➖➖\n#kick [reply|id]\nبلاک کردن و کیک کردن فرد از گروه.\n➖➖➖➖➖➖\n#setwlc [your text]\nتنظیم یک متن به عنوان متن خوشامد گویی\n➖➖➖➖➖➖\n#setwlc rules [your text]\nتنظیم کردن یک متن به عنوان پلام خوشامد گویی + قوانین گروه.\n➖➖➖➖➖➖\n#delwlc\nحذف پیام خوشامد گویی.\n➖➖➖➖➖➖\n#id\nنمایش اطلاعات اکانت شما .\n➖➖➖➖➖➖\n#sticker [reply]\nبا ریپلای کردن عکس میتوانید آن را به استیکر تبدیل کنید!\n#sticker [text]\nتبدیل متن شما به استیکر ...\n#sticker [text] [color]\nتبدیل متن شما به استیکر با تنظیم رنگ ...\n#sticker [text] [color] [font]\n\nتبدیل متن شما به استیکر با تنظیم رنگ و فونت...\n( Supported fonts : [fun|italic|bold|arial] )\n( Supported colors : [black|red|blue|yellow|pink|orange|brown] )\nتبدیل متن شما به استیکر ...\n➖➖➖➖➖➖\n#photo [reply]\nبا ریپلای کردن استیکر میتوانید آن را به عکس تبدیل کنید!\n➖➖➖➖➖➖\n#vc [kalame](زبان ها : Farsi,En)\nتبدیل کلمه به صدا\n➖➖➖➖➖➖\n#weather [اسم شهر]\nدریافت اطلاعات آب و هوای یک منطقه\n➖➖➖➖➖➖\n#aparat [کلمه] \nجستوجو در آپارات!\n➖➖➖➖➖➖\n#me\nنمایش تعداد پیام های ارسال شده از شما\n➖➖➖➖➖➖\n#qr [کلمه]\nتبدیل کلمه،لینک،... شما به بارکد\n➖➖➖➖➖➖\n#insta [id, Post Link]\nدریافت اطلاعات ایدی و ... از اینستاگرام!\n➖➖➖➖➖➖\n#write [text]\nطراحی کلمه مورد تظر با 17 فونت!\n➖➖➖➖➖➖\n#calc [2*2]\nمحاسبه جمع تفریق ضرب و...\n➖➖➖➖➖➖\n#porn [text]\nجستجو در 7 سایت +\n➖➖➖➖➖➖\n#time\nدریافت زمان دقیق!\n➖➖➖➖➖➖\n#support \nدریافت لینک گروه پشتیبانی!\n➖➖➖➖➖➖\n#setowner [reply, username]\nست کردن کاربر به عنوان خریدار گروه\n#promote [username|id]\nارتقاء مقام کاربر به ناظم گروه\n#demote [username|id]\nخلع مقام کردن کاربر از سمت ناظم ها\n➖➖➖➖➖➖\n#setname [text]\nتغییر اسم گروه\n#setphoto\nجایگزین کردن عکس گروه\n#setrules [text]\nگذاشتن قوانین برای گروه\n#setabout [text]\nگذاشتن متن توضیحات برای سوپر گروه(این متن در بخش توضیحات گروه هم نمایش داده میشه)\n➖➖➖➖➖➖\n#newlink\nساختن لینک جدید\n#link\nگرفتن لینک\n#linkpv\nارسال لینک گروه در پیوی شما!\n➖➖➖➖➖➖\n#rules\nنمایش قوانین\n➖➖➖➖➖➖\n#lock [links|flood|spam|Arabic|member|rtl|sticker|TgService|contacts|forward|badword|emoji|english|tag|webpage|strict]\nقفل کردن لینک گروها-اسپم-متن و اسم های بزرگ -زبان فارسی-تعداد اعضا-کاراکتر های غیر عادی-استیکر-مخاطبین-فروارد-فوش-اموجی-انگلیسی-تگ-لینک سایت\n\nدقت کنید اگر گذینه اخری strict روشن باشد کاربر از گروه کیک میشود و پیغام پاک میشه در غیر این صورت فقط پیغام پاک میشود\n➖➖➖➖➖➖\n#unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|TgService|strict|forward|badword|emoji|english]\nباز کردن قفل امکانات بالا\n➖➖➖➖➖➖\n#mute [all|audio|gifs|photo|video|text]\nپاک کردن سریع همه پیغام ها-عکس ها-گیف ها-صدا های ضبط شده-فیلم-متن\n➖➖➖➖➖➖\n#unmute [all|audio|gifs|photo|video|text]\nباز کردن قفل امکانات بالا\n➖➖➖➖➖➖\n#setflood [value]\nگذاشتن value به عنوان حساسیت اسپم\n➖➖➖➖➖➖\n#settings\nنمایش تنظیمات گروه\n➖➖➖➖➖➖\n#muteslist\nنمایش نوع پیغام های سایلنت شده\n*A \"muted\" message type is auto-deleted if posted\n➖➖➖➖➖➖\n#muteuser [username]\nسایلنت کردن یک کاربر خاص در گروه\nفقط خریدار (owner) میتونه کسیو سایلنت کنه ولی ناظم ها (Mods) میتونند فرد را از سایلنتی در بیاورند\n➖➖➖➖➖➖\n#mutelist\nنمایش لیست افراد سایلنت شده\n➖➖➖➖➖➖\n#clean [rules|about|modlist|mutelist|bots]\nپاک کردن لیست ناظم ها-درباره-لیست سایلنت شده ها-قوانین-بات ها\n➖➖➖➖➖➖\n#log\nبرگرداندن تاریخچه گروه در یک فایل متنی\n➖➖➖➖➖➖\n#version\nنمایش ورژن و ادمین های ربات!\n➖➖➖➖➖➖\n#plist\nدریافت لیست قیمت برای خرید گروه...\n➖➖➖➖➖➖\n#feedback [text]\nشما میتوانید با این دستور نظرات و پیشنهادات خود را برای ما ارسال کنید...\n➖➖➖➖➖➖\n| Channel : @Black_CH |\n"
 			reply_msg(msg.id, text, ok_cb, false)
 	end
 	if matches[1] == 'superhelp' and msg.to.type == "user" then
-			text = "راهنماي بات ضد اسپم maximus\nدرصورت ابهام ميتونيد با دستور /support لينک گروه پشتيباني را دريافت کنيد و  مشکلتون رو مطرح کنيد! \n\n??????\n#ban @username\nاخراج کردن يک فرد از گروه به صورت دائمي\n#unban @username\nخارج کردن يک فرد از حالت اخراج دائمي!\n#banlist\nليست افراد بن شده.\n??????\n#info\nنمايش اطلاعات اصلي گروه\n??????\n#del [reply|number]\nپاک کردن تعداد پيام هاي مورد نظر با ريپلي و تعداد!\n??????\n#topstats\nنشان دادن ? نفر از فعال ترين اعضاي گروه!\n??????\n#admins\nنمايش ليست ادمين هاي گروه\n??????\n#filter [word]\nفيلتر کردن يک کلمه\n#remword [word]\nحذف کردن کلمه از ليست فيلتر کلمات\n#filterlist\nنشان دادن کلمه هاي فيلتر شده.\n??????\n#owner\nنمايش آيدي خريدار گروه.\n??????\n#modlist\nنمايش ليست ناظم ها.\n??????\n#bots\nليست روبات هاي گروه.\n??????\n#who\nليست اعضاي گروه در يک فايل متني.\n(.txt)\n??????\n#kick [reply|id]\nبلاک کردن و کيک کردن فرد از گروه.\n??????\n#setwlc [your text]\nتنظيم يک متن به عنوان متن خوشامد گويي\n??????\n#setwlc rules [your text]\nتنظيم کردن يک متن به عنوان پلام خوشامد گويي + قوانين گروه.\n??????\n#delwlc\nحذف پيام خوشامد گويي.\n??????\n#id\nنمايش اطلاعات اکانت شما .\n??????\n#sticker [reply]\nبا ريپلاي کردن عکس ميتوانيد آن را به استيکر تبديل کنيد!\n#sticker [text]\nتبديل متن شما به استيکر ...\n#sticker [text] [color]\nتبديل متن شما به استيکر با تنظيم رنگ ...\n#sticker [text] [color] [font]\n\nتبديل متن شما به استيکر با تنظيم رنگ و فونت...\n( Supported fonts : [fun|italic|bold|arial] )\n( Supported colors : [black|red|blue|yellow|pink|orange|brown] )\nتبديل متن شما به استيکر ...\n??????\n#photo [reply]\nبا ريپلاي کردن استيکر ميتوانيد آن را به عکس تبديل کنيد!\n??????\n#vc [kalame](زبان ها : Farsi,En)\nتبديل کلمه به صدا\n??????\n#weather [اسم شهر]\nدريافت اطلاعات آب و هواي يک منطقه\n??????\n#aparat [کلمه] \nجستوجو در آپارات!\n??????\n#me\nنمايش تعداد پيام هاي ارسال شده از شما\n??????\n#qr [کلمه]\nتبديل کلمه،لينک،... شما به بارکد\n??????\n#insta [id, Post Link]\nدريافت اطلاعات ايدي و ... از اينستاگرام!\n??????\n#write [text]\nطراحي کلمه مورد تظر با 17 فونت!\n??????\n#calc [2*2]\nمحاسبه جمع تفريق ضرب و...\n??????\n#porn [text]\nجستجو در 7 سايت +\n??????\n#time\nدريافت زمان دقيق!\n??????\n#support \nدريافت لينک گروه پشتيباني!\n??????\n#setowner [reply, username]\nست کردن کاربر به عنوان خريدار گروه\n#promote [username|id]\nارتقاء مقام کاربر به ناظم گروه\n#demote [username|id]\nخلع مقام کردن کاربر از سمت ناظم ها\n??????\n#setname [text]\nتغيير اسم گروه\n#setphoto\nجايگزين کردن عکس گروه\n#setrules [text]\nگذاشتن قوانين براي گروه\n#setabout [text]\nگذاشتن متن توضيحات براي سوپر گروه(اين متن در بخش توضيحات گروه هم نمايش داده ميشه)\n??????\n#newlink\nساختن لينک جديد\n#link\nگرفتن لينک\n#linkpv\nارسال لينک گروه در پيوي شما!\n??????\n#rules\nنمايش قوانين\n??????\n#lock [links|flood|spam|Arabic|member|rtl|sticker|TgService|contacts|forward|badword|emoji|english|tag|webpage|strict]\nقفل کردن لينک گروها-اسپم-متن و اسم هاي بزرگ -زبان فارسي-تعداد اعضا-کاراکتر هاي غير عادي-استيکر-مخاطبين-فروارد-فوش-اموجي-انگليسي-تگ-لينک سايت\n\nدقت کنيد اگر گذينه اخري strict روشن باشد کاربر از گروه کيک ميشود و پيغام پاک ميشه در غير اين صورت فقط پيغام پاک ميشود\n??????\n#unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|TgService|strict|forward|badword|emoji|english]\nباز کردن قفل امکانات بالا\n??????\n#mute [all|audio|gifs|photo|video|text]\nپاک کردن سريع همه پيغام ها-عکس ها-گيف ها-صدا هاي ضبط شده-فيلم-متن\n??????\n#unmute [all|audio|gifs|photo|video|text]\nباز کردن قفل امکانات بالا\n??????\n#setflood [value]\nگذاشتن value به عنوان حساسيت اسپم\n??????\n#settings\nنمايش تنظيمات گروه\n??????\n#muteslist\nنمايش نوع پيغام هاي سايلنت شده\n*A \"muted\" message type is auto-deleted if posted\n??????\n#muteuser [username]\nسايلنت کردن يک کاربر خاص در گروه\nفقط خريدار (owner) ميتونه کسيو سايلنت کنه ولي ناظم ها (Mods) ميتونند فرد را از سايلنتي در بياورند\n??????\n#mutelist\nنمايش ليست افراد سايلنت شده\n??????\n#clean [rules|about|modlist|mutelist|bots]\nپاک کردن ليست ناظم ها-درباره-ليست سايلنت شده ها-قوانين-بات ها\n??????\n#log\nبرگرداندن تاريخچه گروه در يک فايل متني\n??????\n#version\nنمايش ورژن و ادمين هاي ربات!\n??????\n#plist\nدريافت ليست قيمت براي خريد گروه...\n??????\n#feedback [text]\nشما ميتوانيد با اين دستور نظرات و پيشنهادات خود را براي ما ارسال کنيد...\n??????\n| Channel : @pedaret |\n"
+			text = "راهنمای بات ضد اسپم بلک\nدرصورت ابهام میتونید با دستور /support لینک گروه پشتیبانی را دریافت کنید و  مشکلتون رو مطرح کنید! \n\n➖➖➖➖➖➖\n#ban @username\nاخراج کردن یک فرد از گروه به صورت دائمی\n#unban @username\nخارج کردن یک فرد از حالت اخراج دائمی!\n#banlist\nلیست افراد بن شده.\n➖➖➖➖➖➖\n#info\nنمایش اطلاعات اصلی گروه\n➖➖➖➖➖➖\n#del [reply|number]\nپاک کردن تعداد پیام های مورد نظر با ریپلی و تعداد!\n➖➖➖➖➖➖\n#topstats\nنشان دادن ۳ نفر از فعال ترین اعضای گروه!\n➖➖➖➖➖➖\n#admins\nنمایش لیست ادمین های گروه\n➖➖➖➖➖➖\n#filter [word]\nفیلتر کردن یک کلمه\n#remword [word]\nحذف کردن کلمه از لیست فیلتر کلمات\n#filterlist\nنشان دادن کلمه های فیلتر شده.\n➖➖➖➖➖➖\n#owner\nنمایش آیدی خریدار گروه.\n➖➖➖➖➖➖\n#modlist\nنمایش لیست ناظم ها.\n➖➖➖➖➖➖\n#bots\nلیست روبات های گروه.\n➖➖➖➖➖➖\n#who\nلیست اعضای گروه در یک فایل متنی.\n(.txt)\n➖➖➖➖➖➖\n#kick [reply|id]\nبلاک کردن و کیک کردن فرد از گروه.\n➖➖➖➖➖➖\n#setwlc [your text]\nتنظیم یک متن به عنوان متن خوشامد گویی\n➖➖➖➖➖➖\n#setwlc rules [your text]\nتنظیم کردن یک متن به عنوان پلام خوشامد گویی + قوانین گروه.\n➖➖➖➖➖➖\n#delwlc\nحذف پیام خوشامد گویی.\n➖➖➖➖➖➖\n#id\nنمایش اطلاعات اکانت شما .\n➖➖➖➖➖➖\n#sticker [reply]\nبا ریپلای کردن عکس میتوانید آن را به استیکر تبدیل کنید!\n#sticker [text]\nتبدیل متن شما به استیکر ...\n#sticker [text] [color]\nتبدیل متن شما به استیکر با تنظیم رنگ ...\n#sticker [text] [color] [font]\n\nتبدیل متن شما به استیکر با تنظیم رنگ و فونت...\n( Supported fonts : [fun|italic|bold|arial] )\n( Supported colors : [black|red|blue|yellow|pink|orange|brown] )\nتبدیل متن شما به استیکر ...\n➖➖➖➖➖➖\n#photo [reply]\nبا ریپلای کردن استیکر میتوانید آن را به عکس تبدیل کنید!\n➖➖➖➖➖➖\n#vc [kalame](زبان ها : Farsi,En)\nتبدیل کلمه به صدا\n➖➖➖➖➖➖\n#weather [اسم شهر]\nدریافت اطلاعات آب و هوای یک منطقه\n➖➖➖➖➖➖\n#aparat [کلمه] \nجستوجو در آپارات!\n➖➖➖➖➖➖\n#me\nنمایش تعداد پیام های ارسال شده از شما\n➖➖➖➖➖➖\n#qr [کلمه]\nتبدیل کلمه،لینک،... شما به بارکد\n➖➖➖➖➖➖\n#insta [id, Post Link]\nدریافت اطلاعات ایدی و ... از اینستاگرام!\n➖➖➖➖➖➖\n#write [text]\nطراحی کلمه مورد تظر با 17 فونت!\n➖➖➖➖➖➖\n#calc [2*2]\nمحاسبه جمع تفریق ضرب و...\n➖➖➖➖➖➖\n#porn [text]\nجستجو در 7 سایت +\n➖➖➖➖➖➖\n#time\nدریافت زمان دقیق!\n➖➖➖➖➖➖\n#support \nدریافت لینک گروه پشتیبانی!\n➖➖➖➖➖➖\n#setowner [reply, username]\nست کردن کاربر به عنوان خریدار گروه\n#promote [username|id]\nارتقاء مقام کاربر به ناظم گروه\n#demote [username|id]\nخلع مقام کردن کاربر از سمت ناظم ها\n➖➖➖➖➖➖\n#setname [text]\nتغییر اسم گروه\n#setphoto\nجایگزین کردن عکس گروه\n#setrules [text]\nگذاشتن قوانین برای گروه\n#setabout [text]\nگذاشتن متن توضیحات برای سوپر گروه(این متن در بخش توضیحات گروه هم نمایش داده میشه)\n➖➖➖➖➖➖\n#newlink\nساختن لینک جدید\n#link\nگرفتن لینک\n#linkpv\nارسال لینک گروه در پیوی شما!\n➖➖➖➖➖➖\n#rules\nنمایش قوانین\n➖➖➖➖➖➖\n#lock [links|flood|spam|Arabic|member|rtl|sticker|TgService|contacts|forward|badword|emoji|english|tag|webpage|strict]\nقفل کردن لینک گروها-اسپم-متن و اسم های بزرگ -زبان فارسی-تعداد اعضا-کاراکتر های غیر عادی-استیکر-مخاطبین-فروارد-فوش-اموجی-انگلیسی-تگ-لینک سایت\n\nدقت کنید اگر گذینه اخری strict روشن باشد کاربر از گروه کیک میشود و پیغام پاک میشه در غیر این صورت فقط پیغام پاک میشود\n➖➖➖➖➖➖\n#unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|TgService|strict|forward|badword|emoji|english]\nباز کردن قفل امکانات بالا\n➖➖➖➖➖➖\n#mute [all|audio|gifs|photo|video|text]\nپاک کردن سریع همه پیغام ها-عکس ها-گیف ها-صدا های ضبط شده-فیلم-متن\n➖➖➖➖➖➖\n#unmute [all|audio|gifs|photo|video|text]\nباز کردن قفل امکانات بالا\n➖➖➖➖➖➖\n#setflood [value]\nگذاشتن value به عنوان حساسیت اسپم\n➖➖➖➖➖➖\n#settings\nنمایش تنظیمات گروه\n➖➖➖➖➖➖\n#muteslist\nنمایش نوع پیغام های سایلنت شده\n*A \"muted\" message type is auto-deleted if posted\n➖➖➖➖➖➖\n#muteuser [username]\nسایلنت کردن یک کاربر خاص در گروه\nفقط خریدار (owner) میتونه کسیو سایلنت کنه ولی ناظم ها (Mods) میتونند فرد را از سایلنتی در بیاورند\n➖➖➖➖➖➖\n#mutelist\nنمایش لیست افراد سایلنت شده\n➖➖➖➖➖➖\n#clean [rules|about|modlist|mutelist|bots]\nپاک کردن لیست ناظم ها-درباره-لیست سایلنت شده ها-قوانین-بات ها\n➖➖➖➖➖➖\n#log\nبرگرداندن تاریخچه گروه در یک فایل متنی\n➖➖➖➖➖➖\n#version\nنمایش ورژن و ادمین های ربات!\n➖➖➖➖➖➖\n#plist\nدریافت لیست قیمت برای خرید گروه...\n➖➖➖➖➖➖\n#feedback [text]\nشما میتوانید با این دستور نظرات و پیشنهادات خود را برای ما ارسال کنید...\n➖➖➖➖➖➖\n| Channel : @Black_CH |\n"
 			reply_msg(msg.id, text, ok_cb, false)
 	end
 
